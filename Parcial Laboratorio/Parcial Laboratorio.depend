@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1507128020 source:c:\users\alumno\desktop\parcial laboratorio\estacionamiento.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"estacionamiento.h"
+
+1507126714 c:\users\alumno\desktop\parcial laboratorio\estacionamiento.h
+
+1507128044 source:c:\users\alumno\desktop\parcial laboratorio\main.c
+	<stdio.h>
+	<stdlib.h>
+	"estacionamiento.h"
+	<conio.h>
+
