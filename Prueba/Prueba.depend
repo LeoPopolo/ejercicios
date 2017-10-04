@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1507075338 source:c:\users\arielskap\desktop\prueba\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	<string.h>
+	<conio.h>
+	<ctype.h>
+
+1507075347 c:\users\arielskap\desktop\prueba\funciones.h
+
+1507072899 source:c:\users\arielskap\desktop\prueba\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1507080848 source:f:\usuarios\alumno\descargas\prueba\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"funciones.h"
+
+1507080834 f:\usuarios\alumno\descargas\prueba\funciones.h
+
+1507081145 source:f:\usuarios\alumno\descargas\prueba\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	<string.h>
+	<conio.h>
+	<ctype.h>
+
