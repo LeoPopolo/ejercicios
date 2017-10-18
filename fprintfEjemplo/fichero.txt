@@ -1,0 +1,3 @@
+20171018 Esto es un texto dentro del fichero.
+20171018 Esto es otro texto dentro del fichero.
+20171018 Esto es otro texto dentro del fichero. y el buffer contiene: 20171018 Esto es un texto dentro del fichero.
