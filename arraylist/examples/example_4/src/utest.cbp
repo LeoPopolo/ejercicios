@@ -38,7 +38,6 @@
 		</Unit>
 		<Unit filename="../../../utest.h" />
 		<Unit filename="../inc/ArrayList.h" />
-		<Unit filename="../inc/Employee.h" />
 		<Unit filename="../testing/inc/eighthTest.h" />
 		<Unit filename="../testing/inc/eleventhTest.h" />
 		<Unit filename="../testing/inc/fifteenthTest.h" />

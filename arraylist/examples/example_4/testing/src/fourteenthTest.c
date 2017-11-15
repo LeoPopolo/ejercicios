@@ -88,6 +88,7 @@ void fourteenthTestCase02(void)
     {
         pAuxGet[i] = list->pop(list,i);
         utest_assertNotNullMsg(pAuxGet[i],"Error in return value of <pop> if ok the correct value is not NULL");
+
     }
 
     for (i=0;i < LENGTH;i++)
