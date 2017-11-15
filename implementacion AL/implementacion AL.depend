@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1510757683 source:c:\users\alumno\desktop\implementacion al\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+
+1510748331 c:\users\alumno\desktop\implementacion al\arraylist.h
+
+1510748331 c:\users\alumno\desktop\implementacion al\employee.h
+
+1510750532 source:c:\users\alumno\desktop\implementacion al\arraylist\examples\example_4\src\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../inc/ArrayList.h"
+
+1510748331 c:\users\alumno\desktop\implementacion al\arraylist\examples\example_4\inc\arraylist.h
+
