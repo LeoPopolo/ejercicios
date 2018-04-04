@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1522850404 source:c:\users\alumno\desktop\arrays perro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<conio.h>
+
