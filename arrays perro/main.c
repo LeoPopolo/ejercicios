@@ -44,7 +44,6 @@ int main()
     }
     while(1);
 
-
     return 0;
 }
 
@@ -100,6 +99,13 @@ void pintar()
             if (tecla == 80 && y<19) y++;
             if (tecla == 72 && y>1) y--;
             if (tecla == 77 && x<75) x++;
+            if (tecla == 27)
+            {
+                system("cls");
+                printf("Ha salido del programa. Presione ENTER");
+                getch();
+                exit(1);
+            }
 
             gotoxy(x, y);
             printf("Leo");
