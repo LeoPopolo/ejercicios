@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1524496370 source:d:\abmleo\abmemp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"Empleados.h"
+
+1524492703 d:\abmleo\abmemp\empleados.h
+
+1524495517 source:d:\abmleo\abmemp\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"Empleados.h"
+
+1524663075 source:c:\users\alumno\desktop\abmemp\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"Empleados.h"
+
+1524669610 c:\users\alumno\desktop\abmemp\empleados.h
+
+1524669610 source:c:\users\alumno\desktop\abmemp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"Empleados.h"
+
