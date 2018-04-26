@@ -11,7 +11,9 @@
 int main()
 {
     eEmpleado lista[TAM];
+    eSector sectores[5];
     inicializarVariables(lista, TAM);
+    hardcodeo(sectores);
 
     do
     {
@@ -22,13 +24,13 @@ int main()
             alta(lista, TAM);
             break;
         case 2:
-            baja(lista, TAM);
+            baja(lista, TAM, sectores);
             break;
         case 3:
-            modificacion(lista, TAM);
+            modificacion(lista, TAM, sectores);
             break;
         case 4:
-            mostrarTodos(lista, TAM);
+            mostrarTodos(lista, TAM, sectores, 5);
             system("pause");
             break;
         case 5:

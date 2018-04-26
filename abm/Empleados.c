@@ -5,6 +5,36 @@
 #include <windows.h>
 #include "Empleados.h"
 
+void hardcodeo(eSector sectores[])
+{
+    eSector nuevosector;
+
+    nuevosector.id = 1;
+    nuevosector.isEmpty = 0;
+    strcpy(nuevosector.descripcion, "RRHH");
+    sectores[0] = nuevosector;
+
+    nuevosector.id = 2;
+    nuevosector.isEmpty = 0;
+    strcpy(nuevosector.descripcion, "Administracion");
+    sectores[1] = nuevosector;
+
+    nuevosector.id = 3;
+    nuevosector.isEmpty = 0;
+    strcpy(nuevosector.descripcion, "Sistemas");
+    sectores[2] = nuevosector;
+
+    nuevosector.id = 4;
+    nuevosector.isEmpty = 0;
+    strcpy(nuevosector.descripcion, "Deposito");
+    sectores[3] = nuevosector;
+
+    nuevosector.id = 5;
+    nuevosector.isEmpty = 0;
+    strcpy(nuevosector.descripcion, "Compras");
+    sectores[4] = nuevosector;
+}
+
 void gotoxy(int x,int y)
 {
     HANDLE hcon;
@@ -72,7 +102,7 @@ int buscarLegajo(eEmpleado lista[], int tam, int legajo)
     return flag;
 }
 
-void mostrar(eEmpleado lista)
+void mostrar(eEmpleado lista, eSector sectores)
 {
     char aux[13];
 
@@ -93,17 +123,19 @@ void mostrar(eEmpleado lista)
     printf("%d", lista.legajo);
     gotoxy(7, 3);
     printf("%s", lista.nombre);
-    gotoxy(32, 3);
+    gotoxy(29, 3);
     printf("%d", lista.edad);
-    gotoxy(37, 3);
+    gotoxy(34, 3);
     printf("%.2f", lista.sueldo);
-    gotoxy(47, 3);
+    gotoxy(44, 3);
     printf("%s", aux);
-    gotoxy(60, 3);
+    gotoxy(57, 3);
     printf("%d/%d/%d", lista.fechaIng.dia, lista.fechaIng.mes, lista.fechaIng.anio);
+    gotoxy(77, 3);
+    printf("%s", sectores.descripcion);
 }
 
-void mostrarTodos(eEmpleado lista[], int tam)
+void mostrarTodos(eEmpleado lista[], int tame, eSector sectores[], int tams)
 {
     int flag = -1;
     system("cls");
@@ -111,29 +143,35 @@ void mostrarTodos(eEmpleado lista[], int tam)
     printf("Legajo");
     gotoxy(7, 1);
     printf("Nombre y Apellido");
-    gotoxy(32, 1);
+    gotoxy(29, 1);
     printf("Edad");
-    gotoxy(37, 1);
+    gotoxy(34, 1);
     printf("Sueldo");
-    gotoxy(47, 1);
+    gotoxy(44, 1);
     printf("Categoria");
-    gotoxy(60, 1);
+    gotoxy(57, 1);
     printf("Fecha de ingreso");
+    gotoxy(77, 1);
+    printf("Sector");
 
-    for(int i=0; i<tam; i++)
+    for(int i=0; i<tame; i++)
     {
-        if(lista[i].isEmpty == 0)
+        for(int j=0; j<tams; j++)
         {
-            mostrar(lista[i]);
-            flag = 1;
+            if(lista[i].idSector == sectores[j].id && lista[i].isEmpty == 0)
+            {
+                mostrar(lista[i], sectores[j]);
+                flag = 1;
+            }
         }
     }
-    printf("\n\n");
+    printf("\n\n\n\n\n");
     if(flag != 1)
     {
         system("cls");
         printf("No hay empleados para mostrar.\n");
     }
+
 
 }
 
@@ -216,6 +254,12 @@ void alta(eEmpleado lista[], int tam)
                 printf("\nReingrese anio: ");
                 scanf("%d", &nuevalista.fechaIng.anio);
             }
+            do
+            {
+                printf("\n1.RRHH\n2.Administracion\n3.Sistemas\n4.Deposito\n5.Compras\n\nIngresa sector: ");
+                scanf("%d", &nuevalista.idSector);
+            }while(nuevalista.idSector > 5);
+
 
             nuevalista.isEmpty = 0;
 
@@ -227,13 +271,13 @@ void alta(eEmpleado lista[], int tam)
     lista[libre] = nuevalista;
 }
 
-void baja(eEmpleado lista[], int tam)
+void baja(eEmpleado lista[], int tam, eSector sectores[])
 {
     int legajo;
     char respuesta = 'n';
     int esta;
 
-    mostrarTodos(lista, tam);
+    mostrarTodos(lista, tam, sectores, 5);
 
     printf("\nIngrese legajo a buscar: ");
     scanf("%d", &legajo);
@@ -241,7 +285,7 @@ void baja(eEmpleado lista[], int tam)
     if(esta != -1)
     {
         system("cls");
-        mostrar(lista[esta]);
+        mostrar(lista[esta], sectores[esta]);
         printf("\nConfirmar baja? s/n");
         fflush(stdin);
         respuesta = getch();
@@ -265,13 +309,13 @@ void baja(eEmpleado lista[], int tam)
     }
 }
 
-void modificacion(eEmpleado lista[], int tam)
+void modificacion(eEmpleado lista[], int tam, eSector sectores[])
 {
     int legajo;
     char respuesta = 'n';
-    int esta;
+    int esta, opcion;
 
-    mostrarTodos(lista, tam);
+    mostrarTodos(lista, tam, sectores, 5);
 
     printf("\nIngrese legajo a buscar: ");
     scanf("%d", &legajo);
@@ -279,16 +323,38 @@ void modificacion(eEmpleado lista[], int tam)
     if(esta != -1)
     {
         system("cls");
-        mostrar(lista[esta]);
+        mostrar(lista[esta], sectores[esta]);
         printf("\nDesea modificar el sueldo de este empleado? s/n");
         fflush(stdin);
         respuesta = getch();
         if(respuesta == 's')
         {
-            printf("\nIngrese sueldo: ");
-            scanf("%f", &lista[esta].sueldo);
-            printf("\nModificacion exitosa.\n");
-            system("pause");
+            system("cls");
+            printf("1-sueldo\n2-nombre\n3-edad\ningrese opcion: ");
+            scanf("%d", &opcion);
+            switch(opcion)
+            {
+            case 1:
+                printf("\nIngrese sueldo: ");
+                scanf("%f", &lista[esta].sueldo);
+                printf("\nModificacion exitosa.\n");
+                system("pause");
+                break;
+            case 2:
+                printf("\nIngrese nombre: ");
+                fflush(stdin);
+                scanf("%[^\n]", lista[esta].nombre);
+                printf("\nModificacion exitosa.\n");
+                system("pause");
+                break;
+            case 3:
+                printf("\nIngrese edad: ");
+                scanf("%d", &lista[esta].edad);
+                printf("\nModificacion exitosa.\n");
+                system("pause");
+                break;
+            }
+
         }
         else
         {
