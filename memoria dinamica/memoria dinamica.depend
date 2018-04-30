@@ -1,5 +1,7 @@
 # depslib dependency file v1.0
-1525044153 source:c:\users\administrador\desktop\proyectos leo\memoria dinamica\main.c
+1525050696 source:c:\users\administrador\desktop\proyectos leo\memoria dinamica\main.c
+	<stdio.h>
+	<stdlib.h>
 	<stdio.h>
 	<stdlib.h>
 

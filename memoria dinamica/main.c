@@ -5,7 +5,7 @@ int main()
 {
     int *num;
     int *auxnum;
-    int opcion, cantidad = 1, nuevacantidad;
+    int opcion, cantidad = 0, nuevacantidad;
 
     num = (int*) malloc(sizeof(int));
     if(num == NULL)
@@ -16,19 +16,19 @@ int main()
     while(1)
     {
         printf("ingrese un numero: ");
-        scanf("%d", num);
+        scanf("%d", num+cantidad);
+        cantidad++;
         printf("si desea ingresar otro numero ingrese 1: ");
         scanf("%d", &opcion);
         if(opcion == 1)
         {
-            nuevacantidad = sizeof(int) * cantidad+1;
-            auxnum = realloc(num, nuevacantidad);
+            nuevacantidad = sizeof(int) * cantidad+2;
+            auxnum = realloc(num, nuevacantidad+1);
             if (auxnum == NULL)
             {
                 printf("\nNo hay lugar en memoria\n");
                 break;
             }
-            cantidad++;
             num = auxnum;
         }
         else
@@ -38,12 +38,13 @@ int main()
     }
     for(int i = 0; i < cantidad; i++)
     {
-        printf("%d\n", (*num)+i);
+        printf("%d\n", *(num+i));
     }
     free(num);
 
     return 0;
 }
+
 
 /*
 #include <stdio.h>
@@ -79,7 +80,7 @@ int main()
         if(seguirCargando == 1)
         {
 // Calculamos el nuevo tamaño del array
-            auxNuevaLogitud = sizeof(struct persona) * logitudPersonas;
+            auxNuevaLogitud = sizeof(struct persona) * logitudPersonas+1;
 // Redimencionamos la lista
             pAuxPersona = realloc( pArrayPersona, auxNuevaLogitud);
             if (pAuxPersona == NULL)
