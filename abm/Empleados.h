@@ -48,3 +48,5 @@ int validarLetra(char opcion[]);
 int cantidadEmpleados(int sector, eEmpleado emp[],int tam);
 void mostrarSectoresConCantidadDeEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS);
 void inicializarSectores(eSector sec[], int tam);
+int maximoEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS);
+void sectorConMasEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS);

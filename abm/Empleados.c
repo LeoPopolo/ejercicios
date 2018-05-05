@@ -505,7 +505,7 @@ int menuOpcion()
     int opcion;
 
     system("cls");
-    printf("1-Listar todos los empleados\n2-Listar sectores con empleados\n3-Salir\nIngrese opcion: ");
+    printf("1-Listar todos los empleados\n2-Listar sectores con empleados\n3-Mostrar cantidad de empleados por sector\n4-Sector con mas empleados\n5-Salir\nIngrese opcion: ");
     scanf("%d", &opcion);
 
     return opcion;
@@ -531,9 +531,9 @@ int validarLetra(char opcion[])
 int cantidadEmpleados(int sector, eEmpleado emp[],int tam)
 {
     int cantidad=0;
-    for(int i=0;i<tam;i++)
+    for(int i=0; i<tam; i++)
     {
-        if(emp[i].idSector==sector)
+        if(emp[i].idSector==sector && emp[i].isEmpty == 0)
         {
             cantidad++;
         }
@@ -545,11 +545,44 @@ void mostrarSectoresConCantidadDeEmpleados(eEmpleado emp[],int tamE,eSector sec[
 {
     int cantidad;
     printf("\n---Cantidad de empleados por sector---\n\n");
-    for (int i=0;i<tamS;i++)
+    for (int i=0; i<tamS; i++)
     {
         printf("\t%s: ",sec[i].descripcion);
         cantidad=cantidadEmpleados(sec[i].id,emp,tamE);
         printf("%d\n\n",cantidad);
     }
+    system("pause");
+}
+
+int maximoEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS)
+{
+    int maximo;
+    int flag=0;
+    int cantidad;
+    for(int i=0; i<tamS; i++)
+    {
+        cantidad=cantidadEmpleados(sec[i].id,emp,tamE);
+        if(cantidad>maximo || flag==0)
+        {
+            maximo=cantidad;
+            flag=1;
+        }
+    }
+    return maximo;
+}
+
+void sectorConMasEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS)
+{
+    int cantidad;
+    cantidad=maximoEmpleados(emp,tamE,sec,tamS);
+    printf("\n\n---Sector con mas empleados---\n\n");
+    for(int i=0;i<tamS;i++)
+    {
+        if(cantidad==cantidadEmpleados(sec[i].id,emp,tamE))
+        {
+            printf("%s(%d)\n",sec[i].descripcion, cantidad);
+        }
+    }
+    printf("\n");
     system("pause");
 }

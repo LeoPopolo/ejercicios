@@ -44,12 +44,18 @@ int main()
                     mostrarTodos(lista, TAM, sectores, 5);
                     break;
                 case 2:
-                    mostrarSectoresConCantidadDeEmpleados(lista, 50, sectores, 5);
                     mostrarSectores(lista, TAM, sectores, 5);
                     break;
                 case 3:
+                    mostrarSectoresConCantidadDeEmpleados(lista, 50, sectores, 5);
+                    break;
+                case 4:
+                    sectorConMasEmpleados(lista, TAM, sectores, 5);
+                    break;
+                case 5:
                     salir = 1;
                     break;
+
                 }
             }
             while(salir != 1);
