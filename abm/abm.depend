@@ -1,19 +1,21 @@
 # depslib dependency file v1.0
-1524707843 source:c:\users\administrador\desktop\proyectos leo\abm\empleados.c
+1525529408 source:c:\users\administrador\desktop\proyectos leo\abm\empleados.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
 	<string.h>
 	<windows.h>
+	<ctype.h>
 	"Empleados.h"
 
-1524691378 c:\users\administrador\desktop\proyectos leo\abm\empleados.h
+1525529408 c:\users\administrador\desktop\proyectos leo\abm\empleados.h
 
-1524691446 source:c:\users\administrador\desktop\proyectos leo\abm\main.c
+1525529408 source:c:\users\administrador\desktop\proyectos leo\abm\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
 	<string.h>
 	<windows.h>
+	<ctype.h>
 	"Empleados.h"
 
