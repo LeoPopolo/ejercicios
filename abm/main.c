@@ -16,8 +16,9 @@ int main()
     inicializarVariables(lista, TAM);
     inicializarSectores(sectores, 5);
     hardcodeo(sectores);
-    int salir = 0, legajo = 1;
+    int salir = 0, legajo = 1, flag = 0;
 
+    //login();
 
     do
     {
@@ -41,7 +42,7 @@ int main()
                 switch(menuOpcion())
                 {
                 case 1:
-                    mostrarTodos(lista, TAM, sectores, 5);
+                    mostrarTodos(lista, TAM, sectores, 5, flag);
                     break;
                 case 2:
                     mostrarSectores(lista, TAM, sectores, 5);
@@ -63,6 +64,7 @@ int main()
             break;
         case 5:
             ordenamiento(lista, TAM);
+            flag = 1;
             break;
         case 6:
             exit(1);

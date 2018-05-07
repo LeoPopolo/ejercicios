@@ -211,24 +211,31 @@ void mostrar(eEmpleado lista, eSector sectores, int i)
     printf("%s", sectores.descripcion);
 }
 
-int mostrarTodos(eEmpleado lista[], int tame, eSector sectores[], int tams)
+int mostrarTodos(eEmpleado lista[], int tame, eSector sectores[], int tams, int flagOrd)
 {
-    int flag = -1, cont = 3;
+    int flag = -1, cont = 3, flagNEO = 1;
 
     eEmpleado aux;
 
-    for(int i=0; i<tame-1; i++)
+    if(flagOrd == 0)
     {
-        for(int j=i; j<tame; j++)
+        while(flagNEO == 1)
         {
-            if(lista[i].legajo > lista[j].legajo)
+            flagNEO = 0;
+            for(int j=1; j<tame; j++)
             {
-                aux = lista[i];
-                lista[i] = lista[j];
-                lista[j] = aux;
+                if(lista[j].legajo < lista[j - 1].legajo)
+                {
+                    aux = lista[j];
+                    lista[j] = lista[j - 1];
+                    lista[j - 1] = aux;
+                    flagNEO = 1;
+                }
             }
         }
     }
+
+
 
     system("cls");
     gotoxy(0, 1);
@@ -308,8 +315,7 @@ void alta(eEmpleado lista[], int tam, int legajo)
                 fflush(stdin);
                 scanf("%[^\n]", nuevalista.nombre);
             }
-            printf("Ingrese edad: ");
-            scanf("%d", &nuevalista.edad);
+            nuevalista.edad = ingresoEdadVal();
             while(nuevalista.edad > 150)
             {
                 printf("Reingrese edad: ");
@@ -372,7 +378,7 @@ void baja(eEmpleado lista[], int tam, eSector sectores[])
     char respuesta = 'n';
     int esta, flagEsta = 0;
 
-    if((flagEsta = mostrarTodos(lista, tam, sectores, 5)) == 1)
+    if((flagEsta = mostrarTodos(lista, tam, sectores, 5, 0)) == 1)
     {
         printf("\nIngrese legajo a buscar: ");
         scanf("%d", &legajo);
@@ -413,7 +419,7 @@ void modificacion(eEmpleado lista[], int tam, eSector sectores[])
     char respuesta = 'n';
     int esta, opcion, flagEsta;
 
-    if((flagEsta = mostrarTodos(lista, tam, sectores, 5)) == 1)
+    if((flagEsta = mostrarTodos(lista, tam, sectores, 5, 0)) == 1)
     {
         printf("\nIngrese legajo a buscar: ");
         scanf("%d", &legajo);
@@ -472,25 +478,29 @@ void modificacion(eEmpleado lista[], int tam, eSector sectores[])
 
 void ordenamiento(eEmpleado emp[], int tam)
 {
+    int flagNEO = 1;
     eEmpleado aux;
 
-    for(int i=0; i<tam-1; i++)
+    while(flagNEO == 1)
     {
-        for(int j=i; j<tam; j++)
+        flagNEO = 0;
+        for(int j=1; j<tam; j++)
         {
-            if(strcmp(emp[i].nombre, emp[j].nombre) > 0)
+            if(strcmp(emp[j].nombre, emp[j-1].nombre) < 0)
             {
-                aux = emp[i];
-                emp[i] = emp[j];
-                emp[j] = aux;
+                aux = emp[j];
+                emp[j] = emp[j - 1];
+                emp[j - 1] = aux;
+                flagNEO = 1;
             }
-            if(strcmp(emp[i].nombre, emp[j].nombre) == 0)
+            if(strcmp(emp[j].nombre, emp[j-1].nombre) == 0)
             {
-                if(emp[i].edad > emp[j].edad)
+                if(emp[j].edad < emp[j-1].edad)
                 {
-                    aux = emp[i];
-                    emp[i] = emp[j];
-                    emp[j] = aux;
+                    aux = emp[j];
+                    emp[j] = emp[j - 1];
+                    emp[j - 1] = aux;
+                    flagNEO = 1;
                 }
             }
         }
@@ -576,7 +586,7 @@ void sectorConMasEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS)
     int cantidad;
     cantidad=maximoEmpleados(emp,tamE,sec,tamS);
     printf("\n\n---Sector con mas empleados---\n\n");
-    for(int i=0;i<tamS;i++)
+    for(int i=0; i<tamS; i++)
     {
         if(cantidad==cantidadEmpleados(sec[i].id,emp,tamE))
         {
@@ -585,4 +595,56 @@ void sectorConMasEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS)
     }
     printf("\n");
     system("pause");
+}
+
+/*void login()
+{
+    char usuario[30];
+    char contrasenia[20];
+
+    do
+    {
+        system("cls");
+        gotoxy(30, 2);
+        printf("Iniciarse");
+        gotoxy(30, 4);
+        printf("Usuario: ");
+        fflush(stdin);
+        gets(usuario);
+    }
+    while(strcmp(usuario, "leopopolo")!=0 || strlen(usuario) > 30);
+
+    do
+    {
+        system("cls");
+        gotoxy(30, 2);
+        printf("Iniciarse");
+        gotoxy(30, 4);
+        printf("Usuario: %s", usuario);
+        gotoxy(30, 5);
+        printf("Contrasenia: ");
+        fflush(stdin);
+        gets(contrasenia);
+    }
+    while(strcmp(contrasenia, "1234")!=0 || strlen(contrasenia) > 20);
+
+}*/
+
+int ingresoEdadVal()
+{
+    char opcion[30];
+    int datoInt;
+
+    printf("Ingrese edad: ");
+    scanf("%s", opcion);
+
+    while (validarLetra(opcion)== 1)
+    {
+        printf("Usted no puede ingresar un caracter!\nIngrese una edad valida: ");
+        scanf("%s",opcion);
+    }
+
+    datoInt = atoi(opcion);
+
+    return datoInt;
 }

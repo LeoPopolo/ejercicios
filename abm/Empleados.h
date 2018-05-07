@@ -34,7 +34,7 @@ void inicializarVariables(eEmpleado vec[], int tam);
 int buscarLibre(eEmpleado lista[], int tam);
 int buscarLegajo(eEmpleado lista[], int tam, int legajo);
 void mostrar(eEmpleado lista, eSector sectores, int i);
-int mostrarTodos(eEmpleado lista[], int tam, eSector sectores[], int tams);
+int mostrarTodos(eEmpleado lista[], int tam, eSector sectores[], int tams, int flagORD);
 void alta(eEmpleado lista[], int tam, int legajo);
 void baja(eEmpleado lista[], int tam, eSector sectores[]);
 void modificacion(eEmpleado lista[], int tam, eSector sectores[]);
@@ -50,3 +50,5 @@ void mostrarSectoresConCantidadDeEmpleados(eEmpleado emp[],int tamE,eSector sec[
 void inicializarSectores(eSector sec[], int tam);
 int maximoEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS);
 void sectorConMasEmpleados(eEmpleado emp[],int tamE,eSector sec[],int tamS);
+//void login();
+int ingresoEdadVal();
