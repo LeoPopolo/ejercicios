@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1525716898 source:c:\users\administrador\desktop\proyectos leo\abm\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"Empleados.h"
+
+1525715445 c:\users\administrador\desktop\proyectos leo\abm\empleados.h
+
+1525715444 source:c:\users\administrador\desktop\proyectos leo\abm\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"Empleados.h"
+
+1525713968 source:c:\users\administrador\desktop\proyectos leo\practica parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"Empleados.h"
+
+1525713968 c:\users\administrador\desktop\proyectos leo\practica parcial\empleados.h
+
+1525714046 source:c:\users\administrador\desktop\proyectos leo\practica parcial\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"Empleados.h"
+
+1525809761 source:c:\users\administrador\desktop\proyectos leo\parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"Empleados.h"
+
+1525810133 c:\users\administrador\desktop\proyectos leo\parcial\empleados.h
+
+1525809566 source:c:\users\administrador\desktop\proyectos leo\parcial\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"Empleados.h"
+
