@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1525879937 source:d:\popolo_leonardo_1a\popolo_leonardo_1a\input.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"input.h"
+	"productos.h"
+
+1525869781 d:\popolo_leonardo_1a\popolo_leonardo_1a\proveedores.h
+
+1525879937 d:\popolo_leonardo_1a\popolo_leonardo_1a\productos.h
+
+1525879949 source:d:\popolo_leonardo_1a\popolo_leonardo_1a\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"productos.h"
+	"input.h"
+
+1525880087 source:d:\popolo_leonardo_1a\popolo_leonardo_1a\productos.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"input.h"
+	"productos.h"
+
+1525876294 d:\popolo_leonardo_1a\popolo_leonardo_1a\input.h
+
+1525869487 source:d:\popolo_leonardo_1a\popolo_leonardo_1a\proveedores.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+	<ctype.h>
+	"input.h"
+	"productos.h"
+	"proveedores.h"
+
