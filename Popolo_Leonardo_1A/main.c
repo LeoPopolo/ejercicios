@@ -69,9 +69,21 @@ int main()
                 mostrarCantidadProductosSuperanPromDes(productos, 50);
                 break;
             case 6:
-                productosDeProveedores(proveedores, productos);
+                mostrarProveedorConProductoMas10(proveedores, 5, productos, 50);
                 break;
             case 7:
+                productosDeProveedores(proveedores, productos);
+                break;
+            case 8:
+                buscarProductosDeProveedor(proveedores, 5, productos, 50);
+                break;
+            case 9:
+                proveedorConMasProductos(proveedores, 5, productos, 50);
+                break;
+            case 10:
+                proveedorConMenosProductos(proveedores, 5, productos, 50);
+                break;
+            case 13:
                 break;
             }
 

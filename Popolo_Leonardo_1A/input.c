@@ -113,8 +113,12 @@ int menuOpcion5()
     printf("3. Listado de productos cuyo stock es mayor a 10\n");
     printf("4. Listado de productos cuyo importe no supera el promedio\n");
     printf("5. Listado de productos cuyo importe supera el promedio\n");
-    printf("6. todos los productos de un proveedor\n");
-    printf("7. Salir\n");
+    printf("6. Listado de productos cuyo importe supera el promedio\n");
+    printf("7. Todos los productos de un proveedor\n");
+    printf("8. Productos de proveedor a buscar\n");
+    printf("9. Proveedor con mas productos\n");
+    printf("10. Proveedor con menos productos\n");
+    printf("13. Salir\n");
     printf("Ingrese opcion: ");
     scanf("%d", &opcion);
 

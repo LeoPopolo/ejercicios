@@ -126,7 +126,6 @@ void mostrarProveedores(eProveedor lista[], int tam);
  */
 
 void mostrarProveedor(eProveedor lista);
-
 int cantidadStockMenos10(int cantidad, eProductos lista[], int tam);
 int cantidadStockMas10(int cantidad, eProductos lista[], int tam);
 void mostrarProductosMas10(eProductos lista[]);
@@ -139,3 +138,16 @@ void mostrarProductosMas10Des(eProductos lista[]);
 void mostrarCantidadProductosNoSuperanPromDes(eProductos lista[], int tam);
 void mostrarCantidadProductosSuperanPromDes(eProductos lista[], int tam);
 void productosDeProveedores(eProveedor lista[], eProductos listaP[]);
+float promedio(eProductos lista[], int tam);
+int cantidadTotalProductos(eProductos lista[], int tam);
+int cantidadProductosSuperanProm(eProductos lista[], int tam);
+int cantidadProductosNoSuperanProm(eProductos lista[], int tam);
+void mostrarCantidadProductosSuperanProm(eProductos lista[], int tam);
+void mostrarCantidadProductosNoSuperanProm(eProductos lista[], int tam);
+void buscarProductosDeProveedor(eProveedor lista[], int tam, eProductos listaP[], int tamP);
+int cantidadProductosBusqueda(int proveedor, eProductos lista[], int tam);
+int maximoProductos(eProveedor lista[], int tam, eProductos lista2[], int tam2);
+int minimoProductos(eProveedor lista[], int tam, eProductos lista2[], int tam2);
+void proveedorConMasProductos(eProveedor proveedor[], int tamPROV, eProductos productos[], int tamPROD);
+void proveedorConMenosProductos(eProveedor proveedor[], int tamPROV, eProductos productos[], int tamPROD);
+void mostrarProveedorConProductoMas10(eProveedor listaPROV[], int tamPROV, eProductos listaPROD[], int tamPROD);
