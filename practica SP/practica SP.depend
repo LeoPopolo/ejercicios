@@ -1,0 +1,53 @@
+# depslib dependency file v1.0
+1528896652 source:c:\users\alumno\desktop\sp practica\practica sp\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1496883878 c:\users\alumno\desktop\sp practica\practica sp\arraylist.h
+
+1528896514 source:c:\users\alumno\desktop\sp practica\practica sp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1528896514 c:\users\alumno\desktop\sp practica\practica sp\funciones.h
+
+1528896514 source:c:\users\alumno\desktop\sp practica\practica sp\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1528985958 source:i:\sp practica\practica sp\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1496883878 i:\sp practica\practica sp\arraylist.h
+
+1528996208 source:i:\sp practica\practica sp\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1528995780 i:\sp practica\practica sp\funciones.h
+
+1528996316 source:i:\sp practica\practica sp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ArrayList.h"
+	"funciones.h"
+
