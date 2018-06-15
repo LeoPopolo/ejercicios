@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1528996544 source:c:\users\administrador\desktop\abm con arraylist\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1496883878 c:\users\administrador\desktop\abm con arraylist\arraylist.h
+
+1529082989 source:c:\users\administrador\desktop\abm con arraylist\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ArrayList.h"
+
