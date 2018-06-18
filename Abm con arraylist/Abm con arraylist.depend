@@ -7,10 +7,40 @@
 
 1496883878 c:\users\administrador\desktop\abm con arraylist\arraylist.h
 
-1529082989 source:c:\users\administrador\desktop\abm con arraylist\main.c
+1529269624 source:c:\users\administrador\desktop\abm con arraylist\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<conio.h>
+	<windows.h>
+	"ArrayList.h"
+
+1529331162 source:e:\abm con arraylist\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1496883878 e:\abm con arraylist\arraylist.h
+
+1529331718 source:e:\abm con arraylist\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	"funciones.h"
+	"ArrayList.h"
+
+1529331670 e:\abm con arraylist\funciones.h
+	"ArrayList.h"
+
+1529334952 source:e:\abm con arraylist\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	"funciones.h"
 	"ArrayList.h"
 

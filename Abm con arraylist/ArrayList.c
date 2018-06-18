@@ -277,11 +277,8 @@ ArrayList* al_clone(ArrayList* this)
         {
             for(i=0; i<this->len(this); i++)
             {
-                if(resizeUp(returnAux)==0)
-                {
-                    auxElement=this->get(this,i);
-                    returnAux->add(returnAux, auxElement);
-                }
+                auxElement=this->get(this,i);
+                returnAux->add(returnAux, auxElement);
             }
         }
     }
@@ -421,11 +418,8 @@ ArrayList* al_subList(ArrayList* this, int from, int to)
         {
             for(i=from; i<to; i++)
             {
-                if(resizeUp(returnAux)==0)
-                {
-                    auxElement=this->get(this,i);
-                    returnAux->add(returnAux, auxElement);
-                }
+                auxElement=this->get(this,i);
+                returnAux->add(returnAux, auxElement);
             }
         }
     }
@@ -497,18 +491,18 @@ int al_sort(ArrayList* this, int (*pFunc)(void*,void*), int order)
                 {
                     if(pFunc(pElementA,pElementB)==1)
                     {
-                        elementAux=this->pElements[i];
-                        this->pElements[i]=this->pElements[j];
-                        this->pElements[j]=elementAux;
+                        elementAux=*(this->pElements+i);
+                        *(this->pElements+i)=*(this->pElements+j);
+                        *(this->pElements+j)=elementAux;
                     }
                 }
                 else
                 {
                     if(pFunc(pElementA,pElementB)==-1)
                     {
-                        elementAux=this->pElements[i];
-                        this->pElements[i]=this->pElements[j];
-                        this->pElements[j]=elementAux;
+                        elementAux=*(this->pElements+j);
+                        *(this->pElements+j)=*(this->pElements+i);
+                        *(this->pElements+i)=elementAux;
                     }
                 }
             }
@@ -568,7 +562,7 @@ int expand(ArrayList* this,int index)
                 return 0;
             }
         }
-        for(i=this->size; i>index; i--)
+        for(i=this->len(this); i>index; i--)
         {
             j = i-1;
             *(this->pElements+i) = *(this->pElements+j);
