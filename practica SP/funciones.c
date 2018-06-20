@@ -39,6 +39,7 @@ void parsear_archivo(ArrayList* pList)
     eDestinatario* listaDes;
     if(pList != NULL)
     {
+        pList->clear(pList);
         if(path != NULL)
         {
             do
@@ -102,6 +103,7 @@ void parsear_archivo_black(ArrayList* pList)
 
     if(pList != NULL)
     {
+        pList->clear(pList);
         if(path != NULL)
         {
             do
@@ -153,56 +155,45 @@ void parsear_archivo_black(ArrayList* pList)
 
 }
 
-void depurar(ArrayList* lista, ArrayList* listaNegra, ArrayList* listaNueva, int* par)
+void depurar(ArrayList* lista, ArrayList* listaNegra, ArrayList* listaNueva)
 {
-    int i,j, vacio = 0;
+    int i,j;
+
     int flagAdd;
     eDestinatario* destinatarioA;
     eDestinatario* destinatarioB;
-    if(*par == 0)
+    if(lista!=NULL && listaNegra!=NULL && listaNueva != NULL)
     {
-        if(lista!=NULL && listaNegra!=NULL && listaNueva != NULL)
+        listaNueva->clear(listaNueva);
+        for(i=0; i<(lista->len(lista)); i++)
         {
-            for(i=0; i<(lista->len(lista)); i++)
+            destinatarioA=lista->get(lista,i);
+            flagAdd=0;
+            for(j=0; j<(listaNegra->len(listaNegra)); j++)
             {
-                destinatarioA=lista->get(lista,i);
-                flagAdd=0;
-                for(j=0; j<(listaNegra->len(listaNegra)); j++)
+                destinatarioB=listaNegra->get(listaNegra,j);
+                if(strcmp(destinatarioA->email,destinatarioB->email)==0 && strcmp(destinatarioA->name,destinatarioB->name)==0)
                 {
-                    destinatarioB=listaNegra->get(listaNegra,j);
-                    if(strcmp(destinatarioA->email,destinatarioB->email)==0 && strcmp(destinatarioA->name,destinatarioB->name)==0)
-                    {
-                        vacio = 1;
-                        flagAdd=1;
-                        break;
-                    }
-                }
-                if(flagAdd==0)
-                {
-                    listaNueva->add(listaNueva,destinatarioA);
+                    flagAdd=1;
+                    break;
                 }
             }
-            if(vacio == 0)
+            if(flagAdd==0)
             {
-                printf("Lista vacia.\n");
-                system("pause");
-            }
-            else
-            {
-                printf("Lista depurada.\n");
-                system("pause");
-                *par = 1;
+                listaNueva->add(listaNueva,destinatarioA);
             }
         }
+        if(listaNueva->isEmpty(listaNueva)==1)
+        {
+            printf("Lista vacia.\n");
+            system("pause");
+        }
+        else
+        {
+            printf("Lista depurada.\n");
+            system("pause");
+        }
     }
-    else
-    {
-        printf("la lista ya ha sido depurada.\n");
-        system("pause");
-    }
-
-
-
 }
 
 void mostrarListaDepurada(ArrayList* lista)
@@ -218,7 +209,7 @@ void mostrarListaDepurada(ArrayList* lista)
         {
             aux = lista->get(lista, i);
 
-            printf("%-3d %-20s\t%-30s\n",i+1 ,aux->name, aux->email);
+            printf("%-3d %-20s\t%-30s\n",i+1,aux->name, aux->email);
             salida = 1;
         }
     }

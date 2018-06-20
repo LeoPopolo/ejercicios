@@ -10,7 +10,6 @@ int main()
     ArrayList* lista = al_newArrayList();
     ArrayList* listaNegra = al_newArrayList();
     ArrayList* listaNueva = al_newArrayList();
-    int par = 0;
     int opcion;
 
     do
@@ -25,7 +24,7 @@ int main()
             parsear_archivo_black(listaNegra);
             break;
         case 3:
-            depurar(lista, listaNegra, listaNueva, &par);
+            depurar(lista, listaNegra, listaNueva);
             break;
         case 4:
             mostrarListaDepurada(listaNueva);

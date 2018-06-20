@@ -51,3 +51,29 @@
 	"ArrayList.h"
 	"funciones.h"
 
+1529496225 source:f:\usuarios\alumno\escritorio\practica sp\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1529496225 f:\usuarios\alumno\escritorio\practica sp\arraylist.h
+
+1529496225 source:f:\usuarios\alumno\escritorio\practica sp\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1529497804 f:\usuarios\alumno\escritorio\practica sp\funciones.h
+
+1529497804 source:f:\usuarios\alumno\escritorio\practica sp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ArrayList.h"
+	"funciones.h"
+

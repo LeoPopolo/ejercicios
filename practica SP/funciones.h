@@ -6,7 +6,7 @@ typedef struct
 
 void parsear_archivo(ArrayList* );
 void parsear_archivo_black(ArrayList* );
-void depurar(ArrayList* , ArrayList* , ArrayList* , int*);
+void depurar(ArrayList* , ArrayList* , ArrayList* );
 void mostrarListaDepurada(ArrayList* );
 int menu();
 eDestinatario* newDestinatario();
