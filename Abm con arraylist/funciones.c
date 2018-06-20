@@ -223,6 +223,7 @@ int buscarDNI(ArrayList* this, char* dni)
             if(strcmp(persona->DNI, dni) == 0)
             {
                 aux = i;
+                break;
             }
         }
     }
@@ -440,6 +441,33 @@ ePersona* newPersona()
     return aux;
 }
 
+FILE* leerArchivoTXT(char* path)
+{
+    FILE* archivo;
+
+    if((archivo = fopen(path, "r")) == NULL)
+    {
+        if((archivo = fopen(path, "w")) == NULL)
+        {
+            printf("\nNo se pudo abrir el archivo\n");
+        }
+    }
+
+    return archivo;
+}
+
+FILE* crearArchivoTXT(char* path)
+{
+    FILE* archivo;
+
+    if((archivo = fopen(path, "w")) == NULL)
+    {
+        printf("\nNo se pudo abrir el archivo\n");
+    }
+
+    return archivo;
+}
+
 FILE* leerArchivo(char* path)
 {
     FILE* archivo;
@@ -462,6 +490,40 @@ FILE* crearArchivo(char* path)
     }
 
     return archivo;
+}
+
+void cargarArchivoTXT(ArrayList* this)
+{
+    //ePersona* lista = newPersona();
+    FILE* f = leerArchivoTXT("listab.txt");
+
+    if(this != NULL)
+    {
+        if(f != NULL)
+        {
+            printf("archivo de texto generado.\n");
+        }
+    }
+}
+
+void guardarArchivoTXT(ArrayList* this)
+{
+    ePersona* lista = newPersona();
+    FILE* f = crearArchivoTXT("listab.txt");
+
+    if(this != NULL && lista != NULL)
+    {
+        if(f != NULL)
+        {
+            rewind(f);
+            fprintf(f, "DNI,Nombre,Edad,Altura\n");
+            for(int i=0; i<this->len(this); i++)
+            {
+                lista = this->get(this, i);
+                fprintf(f, "%s,%s,%d,%.2f\n", lista->DNI, lista->nombre, lista->edad, lista->altura);
+            }
+        }
+    }
 }
 
 void guardarArchivo(ArrayList* this)
@@ -558,11 +620,12 @@ void ordenar(ArrayList* this)
 
 int compararPersonas(void* personaA,void* personaB)
 {
-    if(personaA != NULL && personaB != NULL){
+    if(personaA != NULL && personaB != NULL)
+    {
 
-    ePersona* perA = (ePersona*) personaA;
-    ePersona* perB = (ePersona*) personaB;
-    return strcmp(perA->nombre, perB->nombre);
+        ePersona* perA = (ePersona*) personaA;
+        ePersona* perB = (ePersona*) personaB;
+        return strcmp(perA->nombre, perB->nombre);
     }
     return 0;
 }

@@ -44,3 +44,32 @@
 	"funciones.h"
 	"ArrayList.h"
 
+1529506148 source:f:\usuarios\alumno\escritorio\abm con arraylist\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1529506148 f:\usuarios\alumno\escritorio\abm con arraylist\arraylist.h
+
+1529506148 source:f:\usuarios\alumno\escritorio\abm con arraylist\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	"funciones.h"
+	"ArrayList.h"
+
+1529500534 f:\usuarios\alumno\escritorio\abm con arraylist\funciones.h
+	"ArrayList.h"
+
+1529500533 source:f:\usuarios\alumno\escritorio\abm con arraylist\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	"funciones.h"
+	"ArrayList.h"
+

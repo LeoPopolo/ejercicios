@@ -11,10 +11,11 @@ int main()
 {
     ArrayList* lista = al_newArrayList();
     int opcion;
+    cargarArchivoTXT(lista);
     cargarArchivo(lista);
     system("cls");
     printf("Bienvenido.\n\ncargando datos...");
-    Sleep(1000);
+    Sleep(500);
 
     do
     {
@@ -39,6 +40,7 @@ int main()
             ordenar(lista);
             break;
         case 6:
+            guardarArchivoTXT(lista);
             guardarArchivo(lista);
             break;
         default:
