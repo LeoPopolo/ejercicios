@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1529961902 source:f:\usuarios\alumno\escritorio\practica final\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1529506148 f:\usuarios\alumno\escritorio\practica final\arraylist.h
+
+1530972312 source:f:\usuarios\alumno\escritorio\practica final\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+	<windows.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1530971287 f:\usuarios\alumno\escritorio\practica final\funciones.h
+
+1530970123 source:f:\usuarios\alumno\escritorio\practica final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+	<windows.h>
+	"ArrayList.h"
+	"funciones.h"
+
