@@ -14,7 +14,7 @@ int menu(ArrayList* this)
 
     system("cls");
     printf("Personas cargadas: %d", this->len(this));
-    printf("\n\n1.Alta\n2.Modificacion\n3.Baja\n4.Mostrar clientes\n5.Importar clientes desde archivo .csv\n6.Realizar una venta\n7.Generar informe de ventas por producto\n8.Generar informe de ventas de fecha\n9.Informar...\n10.Salir\n\ningrese: ");
+    printf("\n\n1.Alta\n2.Modificacion\n3.Baja\n4.Mostrar clientes\n5.Importar clientes desde archivo .csv\n6.Realizar una venta\n7.Generar informe de ventas por producto\n8.Generar informe de ventas por fecha\n9.Informar...\n10.Guardar y salir\n\ningrese: ");
 
     fflush(stdin);
     scanf("%[^\n]", opcion);
@@ -24,7 +24,7 @@ int menu(ArrayList* this)
     {
         system("cls");
         printf("Personas cargadas: %d", this->len(this));
-        printf("\n\n1.Alta\n2.Modificacion\n3.Baja\n4.Mostrar clientes\n5.Importar clientes desde archivo .csv\n6.Realizar una venta\n7.Generar informe de ventas por producto\n8.Generar informe de ventas de fecha\n9.\nInformar...\n10.Salir\n\ningrese: ");
+        printf("\n\n1.Alta\n2.Modificacion\n3.Baja\n4.Mostrar clientes\n5.Importar clientes desde archivo .csv\n6.Realizar una venta\n7.Generar informe de ventas por producto\n8.Generar informe de ventas por fecha\n9.\nInformar...\n10.Guardar y salir\n\ningrese: ");
         fflush(stdin);
         scanf("%[^\n]", opcion);
         esNum = validar_num(opcion);
@@ -614,60 +614,76 @@ void venta(ArrayList* thisC, ArrayList* thisV)
     float costo;
     eProducto* listap;
 
-    mostrar(thisC);
-
-    printf("Ingrese id de cliente: ");
-    scanf("%d", &id);
-
-    buscar = buscarID(thisC, id);
-
-    if(buscar != -1)
+    if(thisC != NULL && thisV != NULL && thisC->isEmpty(thisC) == 0)
     {
-        listap = newProducto();
-        do
+        mostrar(thisC);
+
+        printf("Ingrese id de cliente: ");
+        scanf("%d", &id);
+
+        buscar = buscarID(thisC, id);
+
+        if(buscar != -1)
         {
-            printf("Ingrese codigo de producto: ");
-            fflush(stdin);
-            scanf("%[^\n]", producto);
-        }while(setProducto(listap, producto) != 0);
+            listap = newProducto();
+            do
+            {
+                printf("Ingrese codigo de producto: ");
+                fflush(stdin);
+                scanf("%[^\n]", producto);
+            }
+            while(setProducto(listap, producto) != 0);
 
-        do
-        {
-            printf("Ingrese costo unitario de producto: ");
-            scanf("%f", &costo);
-        }while(setCosto(listap, costo) != 0);
+            do
+            {
+                printf("Ingrese costo unitario de producto: ");
+                scanf("%f", &costo);
+            }
+            while(setCosto(listap, costo) != 0);
 
-        do
-        {
-            printf("Ingrese cantidad de productos: ");
-            scanf("%d", &cantidad);
-        }while(setCantidad(listap, cantidad) != 0);
+            do
+            {
+                printf("Ingrese cantidad de productos: ");
+                scanf("%d", &cantidad);
+            }
+            while(setCantidad(listap, cantidad) != 0);
 
-        do
-        {
-            printf("Ingrese fecha de venta. (DD/MM/AA): ");
-            fflush(stdin);
-            scanf("%[^\n]", fecha);
-        }while(setFecha(listap, fecha) != 0);
+            do
+            {
+                printf("Ingrese fecha de venta. (DD/MM/AA): ");
+                fflush(stdin);
+                scanf("%[^\n]", fecha);
+            }
+            while(setFecha(listap, fecha) != 0);
 
-        setIDc(listap, (buscar + 1));
+            setIDc(listap, id);
 
-        thisV->add(thisV, listap);
+            thisV->add(thisV, listap);
 
-        printf("Venta realizada.\n");
+            printf("Venta realizada.\n");
+            system("pause");
+        }
+    }
+    if(thisC->isEmpty(thisC) == 1)
+    {
+        printf("No hay clientes para realizar una venta.\n");
+
         system("pause");
     }
+
+
 }
 
 FILE* abrirArchivoW(char* path)
 {
     strcat(path, ".csv");
 
-    FILE* f = fopen(path, "w");
+    FILE* f;
 
-    if(f==NULL)
+    if((f = fopen(path, "w"))==NULL)
     {
         printf("Se creara el archivo,\n");
+        Sleep(1000);
     }
 
     return f;
@@ -693,6 +709,80 @@ int buscarProd(ArrayList* this, char* desc)
     }
 
     return retorno;
+}
+
+int buscarProdFecha(ArrayList* this, char* desc)
+{
+    int i, retorno = -1;
+    eProducto* prod = newProducto();
+
+    if(prod != NULL && this != NULL && desc != NULL)
+    {
+        for(i=0; i<this->len(this); i++)
+        {
+            prod = this->get(this, i);
+
+            if(strcmp(prod->fechaVenta, desc) == 0)
+            {
+                retorno = 1;
+                break;
+            }
+        }
+    }
+
+    return retorno;
+}
+
+void informeDeVentaFecha(ArrayList* ventas)
+{
+    char descripcion[17], nombreArchivo[25];
+    eProducto* prod = newProducto();
+    int i, existe;
+    printf("Ingrese fecha a informar ventas: ");
+    fflush(stdin);
+    scanf("%[^\n]", descripcion);
+
+    existe = buscarProdFecha(ventas, descripcion);
+
+    strcpy(nombreArchivo, descripcion);
+
+    FILE* f = abrirArchivoW(nombreArchivo);
+
+    if(f != NULL && ventas->isEmpty(ventas) != 1 && existe == 1)
+    {
+        rewind(f);
+        ordenarV(ventas);
+        fprintf(f,"Id Cliente,Id Producto,Importe total,Fecha de venta\n");
+        for(i=0; i<ventas->len(ventas); i++)
+        {
+            prod = ventas->get(ventas, i);
+
+            if(strcmp(prod->fechaVenta, descripcion) == 0)
+            {
+                fprintf(f, "%d,%s,%.2f,%s\n", getIDc(prod), getProducto(prod), (getCantidad(prod)*getCosto(prod)),getFecha(prod));
+            }
+        }
+        printf("Archivo generado.\n");
+        system("pause");
+    }
+    if(existe == -1)
+    {
+        system("cls");
+        printf("No hay productos vendidos en esa fecha.\n");
+        system("pause");
+    }
+    if(ventas->isEmpty(ventas) == 1)
+    {
+        system("cls");
+        printf("No hay ventas.\n");
+        system("pause");
+    }
+    if(f == NULL)
+    {
+        system("cls");
+        printf("No se pudo generar el archivo.\n");
+        system("pause");
+    }
 
 }
 
@@ -770,7 +860,10 @@ int compararImportes(void* productoA,void* productoB)
     {
         eProducto* proA = (eProducto*) productoA;
         eProducto* proB = (eProducto*) productoB;
-        if((proA->costo*proA->cantidad) < (proB->costo*proB->cantidad)){return 1;}
+        if((proA->costo*proA->cantidad) < (proB->costo*proB->cantidad))
+        {
+            return 1;
+        }
     }
     return 0;
 }
@@ -791,9 +884,40 @@ int compararPersonas(void* personaA,void* personaB)
     return 0;
 }
 
+/*void mostrarUnProducto(eProducto* lista)
+{
+    printf("%-5d%-20s%-11.2f%-3d\n", getIDc(lista), getProducto(lista), getCosto(lista), getCantidad(lista));
+}
+
+void mostrarP(ArrayList* this)
+{
+    int i;
+    eProducto* lista = newProducto();
+
+    if(this != NULL && lista != NULL)
+    {
+        system("cls");
+        if(this->isEmpty(this) == 1)
+        {
+            printf("La lista esta vacia.\n");
+        }
+        else
+        {
+            ordenar(this);
+            printf("Id   producto            costo u    cantidad\n\n");
+            for(i=0; i<this->len(this); i++)
+            {
+                lista = (eProducto*)this->get(this, i);
+                mostrarUnProducto(lista);
+            }
+        }
+        printf("\n\n");
+    }
+}*/
+
 void mostrarUno(eCliente* lista)
 {
-    printf("%-5d%-20s%-20s%10s\n", getID(lista), getNombre(lista), getApellido(lista), getDNI(lista));
+    printf("%-5d%-20s%-20s%-10s\n", getID(lista), getNombre(lista), getApellido(lista), getDNI(lista));
 }
 
 void mostrar(ArrayList* this)
@@ -811,7 +935,7 @@ void mostrar(ArrayList* this)
         else
         {
             ordenar(this);
-            printf("Id   Nombre              Apellido              DNI       \n\n");
+            printf("Id   Nombre              Apellido            DNI       \n\n");
             for(i=0; i<this->len(this); i++)
             {
                 lista = (eCliente*)this->get(this, i);
@@ -821,6 +945,8 @@ void mostrar(ArrayList* this)
         printf("\n\n");
     }
 }
+
+
 
 eProducto* newProducto()
 {
@@ -836,6 +962,163 @@ eProducto* newProducto()
     }
 
     return aux;
+}
+
+FILE* leerArchivo(char* path)
+{
+    FILE* archivo;
+
+    if((archivo = fopen(path, "rb")) == NULL)
+    {
+        printf("\nNo se pudo abrir el archivo\n");
+    }
+
+    return archivo;
+}
+
+FILE* crearArchivo(char* path)
+{
+    FILE* archivo;
+
+    if((archivo = fopen(path, "wb")) == NULL)
+    {
+        printf("\nNo se pudo abrir el archivo\n");
+    }
+
+    return archivo;
+}
+
+void cargarArchivov(ArrayList* this)
+{
+    FILE* archivo = leerArchivo("datosv.bin");
+    eProducto aux;
+    int validar;
+    eProducto* lista;
+    rewind(archivo);
+    if(archivo != NULL)
+    {
+        while (!feof(archivo))
+        {
+            validar = fread(&aux, sizeof(eProducto), 1, archivo);
+            lista = newProducto();
+            if(validar == 1 && lista != NULL)
+            {
+                strcpy(lista->descripcion, aux.descripcion);
+                strcpy(lista->fechaVenta, aux.fechaVenta);
+                lista->idCliente = aux.idCliente;
+                lista->costo = aux.costo;
+                lista->cantidad = aux.cantidad;
+                this->add(this, lista);
+            }
+
+            if(validar!=1)
+            {
+                if(feof(archivo))
+                {
+                    break;
+                }
+                else
+                {
+                    printf("No leyo el ultimo registro\n");
+                    system("pause");
+                    break;
+                }
+            }
+
+        }
+        printf("\nArchivo cargado.\n\n");
+        system("pause");
+
+        fclose(archivo);
+    }
+}
+
+void guardarArchivov(ArrayList* this)
+{
+    int i;
+    eProducto* lista;
+    FILE* f = crearArchivo("datosv.bin");
+
+    if(this != NULL)
+    {
+        if(f != NULL)
+        {
+            rewind(f);
+            for (i=0; i < this->len(this); i++)
+            {
+                lista = (eProducto*)this->get(this, i);
+
+                fwrite(lista, sizeof(eProducto), 1, f);
+            }
+            fclose(f);
+        }
+    }
+}
+
+void cargarArchivob(ArrayList* this)
+{
+    FILE* archivo = leerArchivo("datos.bin");
+    eCliente aux;
+    int validar;
+    eCliente* lista;
+    rewind(archivo);
+    if(archivo != NULL)
+    {
+        while (!feof(archivo))
+        {
+            validar = fread(&aux, sizeof(eCliente), 1, archivo);
+            lista = newCliente();
+            if(validar == 1 && lista != NULL)
+            {
+                strcpy(lista->nombre, aux.nombre);
+                strcpy(lista->apellido, aux.apellido);
+                strcpy(lista->dni, aux.dni);
+                lista->id = aux.id;
+                this->add(this, lista);
+            }
+
+            if(validar!=1)
+            {
+                if(feof(archivo))
+                {
+                    break;
+                }
+                else
+                {
+                    printf("No leyo el ultimo registro\n");
+                    system("pause");
+                    break;
+                }
+            }
+
+        }
+        printf("\nArchivo cargado.\n\n");
+        system("pause");
+
+        fclose(archivo);
+    }
+}
+
+void guardarArchivo(ArrayList* this)
+{
+    int i;
+    eCliente* lista;
+    FILE* f = crearArchivo("datos.bin");
+
+    if(this != NULL)
+    {
+        if(f != NULL)
+        {
+            rewind(f);
+            for (i=0; i < this->len(this); i++)
+            {
+                lista = (eCliente*)this->get(this, i);
+
+                fwrite(lista, sizeof(eCliente), 1, f);
+            }
+            fclose(f);
+        }
+    }
 }
 
 void gotoxy(int x, int y)

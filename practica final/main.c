@@ -14,6 +14,9 @@ int main()
     ArrayList* ventas = al_newArrayList();
     int opcion;
 
+    cargarArchivov(ventas);
+    cargarArchivob(lista);
+
     do
     {
         system("cls");
@@ -30,6 +33,7 @@ int main()
             baja(lista);
             break;
         case 4:
+            //mostrarP(ventas);
             mostrar(lista);
             system("pause");
             break;
@@ -43,10 +47,13 @@ int main()
             informeDeVenta(ventas);
             break;
         case 8:
+            informeDeVentaFecha(ventas);
             break;
         case 9:
             break;
         case 10:
+            guardarArchivo(lista);
+            guardarArchivov(ventas);
             break;
         default:
             printf("\nOpcion incorrecta.\n");
