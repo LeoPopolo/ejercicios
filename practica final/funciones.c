@@ -406,10 +406,28 @@ void alta(ArrayList* this)
     }
 }
 
-void baja(ArrayList* this)
+int clienteTieneVentas(ArrayList* lista, int id)
+{
+    eProducto* prod = newProducto();
+    int i;
+
+    for(i=0; i<lista->len(lista); i++)
+    {
+        prod = lista->get(lista, i);
+
+        if(prod->idCliente == id)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+void baja(ArrayList* this, ArrayList* ventas)
 {
     eCliente* lista = newCliente();
-    int buscar, id;
+    int buscar, id, venta;
     char opcion;
 
     if(this != NULL && lista != NULL && this->isEmpty(this) != 1)
@@ -418,10 +436,19 @@ void baja(ArrayList* this)
         printf("\ningrese id a buscar: ");
         fflush(stdin);
         scanf("%d", &id);
+        venta = clienteTieneVentas(ventas, id);
         buscar = buscarID(this, id);
-        if(buscar == -1)
+        if(buscar == -1 || venta == 1)
         {
-            printf("No se encontro el dni.\n\n");
+            system("cls");
+            if(buscar == -1)
+            {
+                printf("No se encontro el dni.\n\n");
+            }
+            if(venta == 1)
+            {
+                printf("No se puede eliminar a un cliente con ventas realizadas.\n\n");
+            }
             system("pause");
         }
         else
@@ -650,7 +677,7 @@ void venta(ArrayList* thisC, ArrayList* thisV)
 
             do
             {
-                printf("Ingrese fecha de venta. (DD/MM/AA): ");
+                printf("Ingrese fecha de venta. (DD-MM-AA): ");
                 fflush(stdin);
                 scanf("%[^\n]", fecha);
             }
@@ -738,6 +765,7 @@ void informeDeVentaFecha(ArrayList* ventas)
     char descripcion[17], nombreArchivo[25];
     eProducto* prod = newProducto();
     int i, existe;
+    FILE* f;
     printf("Ingrese fecha a informar ventas: ");
     fflush(stdin);
     scanf("%[^\n]", descripcion);
@@ -746,7 +774,7 @@ void informeDeVentaFecha(ArrayList* ventas)
 
     strcpy(nombreArchivo, descripcion);
 
-    FILE* f = abrirArchivoW(nombreArchivo);
+    f = abrirArchivoW(nombreArchivo);
 
     if(f != NULL && ventas->isEmpty(ventas) != 1 && existe == 1)
     {
@@ -762,27 +790,25 @@ void informeDeVentaFecha(ArrayList* ventas)
                 fprintf(f, "%d,%s,%.2f,%s\n", getIDc(prod), getProducto(prod), (getCantidad(prod)*getCosto(prod)),getFecha(prod));
             }
         }
+        system("cls");
         printf("Archivo generado.\n");
-        system("pause");
+
+        fclose(f);
     }
+
     if(existe == -1)
     {
-        system("cls");
-        printf("No hay productos vendidos en esa fecha.\n");
-        system("pause");
+        printf("\nNo hay productos vendidos en esa fecha.\n");
     }
     if(ventas->isEmpty(ventas) == 1)
     {
-        system("cls");
-        printf("No hay ventas.\n");
-        system("pause");
+        printf("\nNo hay ventas.\n");
     }
     if(f == NULL)
     {
-        system("cls");
-        printf("No se pudo generar el archivo.\n");
-        system("pause");
+        printf("\nNo se pudo generar el archivo.\n");
     }
+    system("pause");
 
 }
 
@@ -815,19 +841,20 @@ void informeDeVenta(ArrayList* ventas)
                 fprintf(f, "%d,%s,%.2f,%s\n", getIDc(prod), getProducto(prod), (getCantidad(prod)*getCosto(prod)),getFecha(prod));
             }
         }
+        system("cls");
         printf("Archivo generado.\n");
-        system("pause");
+
+        fclose(f);
     }
     if(ventas->isEmpty(ventas) == 1)
     {
-        printf("No hay ventas.\n");
-        system("pause");
+        printf("\nNo hay ventas.\n");
     }
     if(existe == -1)
     {
-        printf("No hay un producto con ese codigo.\n");
-        system("pause");
+        printf("\nNo hay un producto con ese codigo.\n");
     }
+    system("pause");
 
 }
 
@@ -882,6 +909,81 @@ int compararPersonas(void* personaA,void* personaB)
         return strcmp(perA->apellido, perB->apellido);
     }
     return 0;
+}
+
+void productoMasVendido(ArrayList* lista)
+{
+    eProducto* prod = newProducto();
+    int columnas = lista->len(lista), j;
+
+    char **productos;
+    productos = (char **)malloc (17*sizeof(char*));
+
+    for (j=0; j<17; j++)
+        productos[j] = (char *) malloc (columnas*sizeof(char));
+
+    if(productos != NULL)
+    {
+        for(int i=0; i<lista->len(lista); i++)
+        {
+            prod = lista->get(lista, i);
+
+        }
+    }
+}
+
+void clienteConMasCompras(ArrayList* ventas)
+{
+
+}
+
+int menuCase9()
+{
+    char opcion[20];
+    int esNum;
+
+    system("cls");
+    printf("\n1.Producto con mayor numero de ventas\n2.Cliente que mas productos ha comprado\n3.Volver\n\ningrese: ");
+    fflush(stdin);
+    scanf("%[^\n]", opcion);
+    esNum = validar_num(opcion);
+
+    while(esNum == 1)
+    {
+        system("cls");
+        printf("\n1.Producto con mayor numero de ventas\n2.Cliente que mas productos ha comprado\n3.Volver\n\ningrese: ");
+        fflush(stdin);
+        scanf("%[^\n]", opcion);
+        esNum = validar_num(opcion);
+    }
+
+    esNum = atoi(opcion);
+
+    return esNum;
+}
+
+void menuCase9Switch(ArrayList* lista, ArrayList* ventas)
+{
+    int opcion;
+
+    do
+    {
+        switch(opcion = menuCase9())
+        {
+        case 1:
+            productoMasVendido(lista);
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        default:
+            printf("\nOpcion incorrecta.\n");
+            Sleep(1000);
+        }
+    }
+    while(opcion != 3);
+
 }
 
 /*void mostrarUnProducto(eProducto* lista)

@@ -30,7 +30,7 @@ int main()
             Modificacion(lista);
             break;
         case 3:
-            baja(lista);
+            baja(lista, ventas);
             break;
         case 4:
             //mostrarP(ventas);
@@ -50,6 +50,7 @@ int main()
             informeDeVentaFecha(ventas);
             break;
         case 9:
+            menuCase9Switch(lista, ventas);
             break;
         case 10:
             guardarArchivo(lista);
